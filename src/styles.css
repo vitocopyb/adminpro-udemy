@@ -1,3 +1,4 @@
-#themecolors a {
+#themecolors a,
+.pointer {
     cursor: pointer;
 }

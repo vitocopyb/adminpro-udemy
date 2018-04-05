@@ -4,8 +4,8 @@ import { DOCUMENT } from '@angular/platform-browser';
 @Injectable()
 export class SettingsService {
     ajuste: Ajustes = {
-        temaUrl: 'assets/css/colors/default.css',
-        tema: 'default'
+        temaUrl: 'assets/css/colors/default-dark.css',
+        tema: 'default-dark'
     };
 
     // @Inject(DOCUMENT) private _document: obtiene referencia del DOM de la pagina

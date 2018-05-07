@@ -24,7 +24,10 @@ export class UsuariosComponent implements OnInit {
 
         // se subscribe a la emision del modal cuando realice la accion de subir una iamgen
         this._modalUploadService.notificacion
-            .subscribe(resp => this.cargarUsuarios());
+            .subscribe(resp => {
+                this.cargarUsuarios();
+                console.log('Notificacion en usuario');
+            });
     }
 
     cargarUsuarios() {

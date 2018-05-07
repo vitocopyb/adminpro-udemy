@@ -5,6 +5,12 @@ import { Usuario } from '../../models/usuario.model';
 import { URL_SERVICIOS } from '../../config/config';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
+// TODO *** ADELANTO CLASE 221
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs/Observable';
+
+
 @Injectable()
 export class UsuarioService {
     usuario: Usuario;
@@ -75,6 +81,13 @@ export class UsuarioService {
                     .map((resp: any) => {
                         this.guardarStorage(resp.id, resp.token, resp.usuario);
                         return true;
+                    })
+                    // TODO *** ADELANTO CLASE 221
+                    .catch( err => {
+                        console.log(err.status);
+                        console.log(err.error.mensaje);
+                        swal('Error en el login', err.error.mensaje, 'error');
+                        return Observable.throw(err);
                     });
     }
 
@@ -84,6 +97,11 @@ export class UsuarioService {
                     .map((resp: any) => {
                         swal('Usuario creado', usuario.email, 'success');
                         return resp.usuario;
+                    })
+                    // TODO *** ADELANTO CLASE 221
+                    .catch( err => {
+                        swal(err.error.mensaje, err.error.errors.message, 'error');
+                        return Observable.throw(err);
                     });
     }
 
@@ -100,6 +118,11 @@ export class UsuarioService {
                         }
                         swal('Usuario actualizado', usuario.nombre, 'success');
                         return true;
+                    })
+                    // TODO *** ADELANTO CLASE 221
+                    .catch( err => {
+                        swal(err.error.mensaje, err.error.errors.message, 'error');
+                        return Observable.throw(err);
                     });
     }
 
@@ -137,3 +160,4 @@ export class UsuarioService {
                     });
     }
 }
+

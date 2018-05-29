@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'app-rxjs',
@@ -35,10 +36,10 @@ export class RxjsComponent implements OnInit, OnDestroy {
         return new Observable( observer => {
             let contador = 0;
 
-            let intervalo = setInterval( () => {
+            const intervalo = setInterval( () => {
                 contador += 1;
 
-                let salida = {
+                const salida = {
                     valor: contador
                 };
 
@@ -53,6 +54,7 @@ export class RxjsComponent implements OnInit, OnDestroy {
 
                 // // emite un error
                 // if (contador === 2 ) {
+                // tslint:disable-next-line:max-line-length
                 //     // al comentar el clearInterval, la ejecucion del contador del observador no comienza de 0 nuevamente, sino que continua su incremento normalmente hasta que llega a 3
                 //     // clearInterval(intervalo);
                 //     observer.error('Auxilio!');
@@ -64,7 +66,7 @@ export class RxjsComponent implements OnInit, OnDestroy {
         .retry(2)
         // map() => modifica la respuesta del observable en el objeto que se desee regresar: numero, booleano, string, array, etc
         .map( (resp: any) => {
-            return resp.valor
+            return resp.valor;
         })
         // filter() => permite filtrar la informacion que retorna el observable bajo ciertas condiciones. Retorna un valor booelano
         // primer parametro es obligatorio, el segundo es opcional. index devuelve la posicion donde se ejecuto el filtro

@@ -1,0 +1,23 @@
+# Generar para produccion
+$ ng build -prod -aot false
+
+# Posible error en carpeta de distribucion
+- Es posible que al generar la carpeta de distribucion de un error de NgModule o Require ...
+- Para solucionar esto se debe editar el archivo index.html y antes de que termine la etiqueta </head> se debe colocar
+el siguiente codigo
+
+<head>
+...
+
+    <script>
+        window.req = window.dep = null;
+    </script>
+</head>
+
+- Otro error (al copiar la carpeta a un servidor apache por ejemplo) es problema con los path de algunos archivos.
+Para solucionar eso en el archivo index.html, dentro de la etiqueta <head> se debe comentar el siguiente tag:
+
+<!-- <base href="/"> -->
+
+# Sweet Alert actualizado en GitHub
+https://github.com/t4t5/sweetalert

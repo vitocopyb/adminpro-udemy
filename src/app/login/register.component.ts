@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsuarioService } from '../services/service.index';
 import * as swal from 'sweetalert';
 import { Usuario } from '../models/usuario.model';
@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
 declare function init_plugins();
 
 @Component({
-    selector: "app-register",
-    templateUrl: "./register.component.html",
-    styleUrls: ["./login.component.css"]
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class RegisterComponent implements OnInit {
 
@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit {
     sonIguales( campo1: string, campo2: string) {
         return ( group: FormGroup) => {
 
-            let pass1 = group.controls[campo1].value;
-            let pass2 = group.controls[campo2].value;
+            const pass1 = group.controls[campo1].value;
+            const pass2 = group.controls[campo2].value;
 
             // si son iguales, la validacion es correcta (retorna nulo)
             if ( pass1 === pass2 ) {
@@ -36,15 +36,16 @@ export class RegisterComponent implements OnInit {
             // si no son iguales entonces la validacion es incorrecta (retorna el objeto noIguales: true)
             return {
                 sonIguales: true
-            }
-        }
+            };
+        };
     }
 
     ngOnInit() {
         init_plugins();
 
         // inicia los campos que se van a manejar desde el formulario html
-        // validators => especifica una (o mas funciones) que validen el formulario en forma global. Tambien se pueden crear validaciones por cada campo
+        // validators => especifica una (o mas funciones) que validen el formulario en forma global.
+        // Tambien se pueden crear validaciones por cada campo
         this.forma = new FormGroup({
             nombre: new FormControl( null, Validators.required ),
             correo: new FormControl( null, [Validators.required, Validators.email] ),
@@ -76,7 +77,7 @@ export class RegisterComponent implements OnInit {
         }
 
         // setea un objeto Usuario para poder enviarlo
-        let usuario = new Usuario(
+        const usuario = new Usuario(
             this.forma.value.nombre,
             this.forma.value.correo,
             this.forma.value.password

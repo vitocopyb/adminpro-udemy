@@ -1,5 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/filter';
 
 // temporal
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { APP_ROUTES } from './app.routes';
 
 // Modulos
-import { PagesModule } from './pages/pages.module';
+// import { PagesModule } from './pages/pages.module';
 
 // Servicios
 import { ServiceModule } from './services/service.module';
@@ -17,20 +22,24 @@ import { ServiceModule } from './services/service.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
+import { PagesComponent } from './pages/pages.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        PagesComponent // se agrega en el root de la aplicacion
     ],
     imports: [
         BrowserModule,
         APP_ROUTES,
-        PagesModule,
+        // PagesModule, // se quita porque se carga dinamicamente en app.routes
         FormsModule,
         ReactiveFormsModule,
-        ServiceModule
+        ServiceModule,
+        SharedModule // se agrega para que se puedan utilizar los componetntes del PageComponent
     ],
     providers: [],
     bootstrap: [AppComponent]
